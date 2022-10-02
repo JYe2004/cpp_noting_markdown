@@ -152,3 +152,18 @@ void swap(int *a);
 ```
 就是不行的，因为就算它一个是指针，一个是普通类型
 但是都是int；类型就是错的！！
+
+
+---
+## 补充
+```cpp
+namespace Jill{
+    double bucket(double n){  }
+    double fetch;
+}
+int main(void)
+{
+   using namespace Jill
+   cin >>Jill::fetch 
+}
+```
