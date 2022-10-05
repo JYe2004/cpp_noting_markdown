@@ -41,3 +41,82 @@ c++中结构体和类的最大不同是
 类和结构是只有一个区别的：
 类的成员默认是private，
 而结构是public
+
+
+# 编写程序
+## cin.clear()在cpp中的重要性
+```cpp
+while (!(cin >> temphandicap))
+    {
+        cin.clear();
+//        清空数组
+        while (cin.get() != '\n')
+            continue;
+        cout << "Please enter an number: ";
+    }
+    cin.get();
+```
+不用clear会使
+
+## this指针的理解
+先上代码
+```cpp
+Golf::Golf()
+{
+    using std::cin;
+    using std::cout;
+    char tempname[40];
+    int temphandicap;
+
+    cout << "Please enter the fullname(enter to quit): ";
+    cin.getline(tempname, Len);
+    cout << "Please enter the handicap: ";
+    while (!(cin >> temphandicap))
+    {
+        cin.clear();
+//        清空数组
+        while (cin.get() != '\n')
+            continue;
+        cout << "Please enter an number: ";
+    }
+    cin.get();
+    *this = Golf(tempname, temphandicap);
+    //调用默认构造函数创建一个临时对象赋值给调用对象;
+}
+```
+主要把注意力放在第83行
+this指针其实就是类定义函数的本身
+有一个比喻就是this指针就是房子
+当你走进房子的时候可以看到家具
+但是已经看不到房子了
+家具就是类定义的成员
+房子就是this *
+
+## 初始化和默认函数的理解
+每次写类的public都有两个和**类定义长得一样**的函数
+第一个函数（真身）：
+- 用来初始化
+- 作为函数本身（注意不是以第二个为标准的）
+- 如果第一个没有参数，第二个再搞参数是传不进去的 
+  报错一个无限递归！！（自己给自己传参！！大错特错）
+
+第二个函数（化身）：
+- 用来给用户自己定义的
+- 在主函数里面使用的时候 第二个 <--> 第一个
+这两个函数会融化成一个
+
+>这两个一样的类定义会作为访问private的专属函数
+>敲黑板了：两个一样的类定义和类定义函数本身长得一样
+是访问私有的函数！！！
+
+如果在编写第二个类函数时需要传参的，就请在第一个函数里面假如参数
+并且通过参数来初始化函数
+```cpp
+//默认函数
+Golf::Golf(const char *name, int hc)
+{
+    strncpy(this->fullname, name, 40);
+    this->fullname[39] = '\0';
+    this->handicap = hc;
+}
+```
