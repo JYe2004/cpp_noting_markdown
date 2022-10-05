@@ -2,7 +2,9 @@
 while(*str)
 //quit when *str is '\0'
 ```
+
 # c++中的函数
+
 ## 处理字符串的参数
 
 - 就是char类型的指针--char *
@@ -88,6 +90,7 @@ void swap(int a , int b)
 这也是return存在的原因。
 
 ## 函数重载
+
 ```cpp
 #include "chapter_3.h"
 using namespace std;
@@ -140,22 +143,28 @@ int main()
     return 0;
 }
 ```
+
 一句话：函数名字相同，
 功能相近，但是函数的参数类型
 注意啊，一定是要参数类型不同
 参数类型不同！！！
 比如以下：
+
 ```cpp
 void swap(int a);
 
 void swap(int *a);
 ```
+
 就是不行的，因为就算它一个是指针，一个是普通类型
 但是都是int；类型就是错的！！
 
-
 ---
+
 ## 补充
+
+namespace关键字
+
 ```cpp
 namespace Jill{
     double bucket(double n){  }
