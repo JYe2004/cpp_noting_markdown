@@ -66,8 +66,21 @@ cout << trip;
 > -- x就会类创建的对象
 
 ```cpp
+//  a.h
     friend void operator<<(std::ostream &out, const Time &);
+    //or
+    friend std::ostream operator<<(std::ostream &output , const Time x);
 ```
+```cpp
+// a.cpp
+std::ostream operator<<(std::ostream &output , const Time x)
+{
+    output << x.hours << "hours" << x.minutes << "mins";
+    
+    return output;
+}
+```
+
 引用是为了提高效率
 肯定是直接把参数传进来快过
 变来变去啊
