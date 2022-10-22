@@ -24,3 +24,22 @@ std::cout <"Hello World"<std::endl;
 流提取运算符（>>）
 和
 流插入运算符（<<）
+
+```c
+int** generate(int numRows, int* returnSize, int** returnColumnSizes) {
+    int** ret = malloc(sizeof(int*) * numRows);
+    *returnSize = numRows;
+    *returnColumnSizes = malloc(sizeof(int) * numRows);
+    for (int i = 0; i < numRows; ++i) {
+        ret[i] = malloc(sizeof(int) * (i + 1));
+        (*returnColumnSizes)[i] = i + 1;
+        ret[i][0] = ret[i][i] = 1;
+        for (int j = 1; j < i; ++j) {
+            ret[i][j] = ret[i - 1][j] + ret[i - 1][j - 1];
+        }
+    }
+    return ret;
+}
+```
+
+

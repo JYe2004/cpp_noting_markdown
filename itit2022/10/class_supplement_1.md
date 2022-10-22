@@ -84,6 +84,15 @@ std::ostream operator<<(std::ostream &output , const Time x)
 引用是为了提高效率
 肯定是直接把参数传进来快过
 变来变去啊
+
+- iiii
+    友元定义格式
+```cpp
+friend 要重定义的符号的类型 operator 符号 (要重定义的符号的类型 ,类参数)
+//如果参数是它本身
+friend ostream &operator<<(ostream & os , const Time &t);
+```
+
 ### 重构，主要是转化成这两种形式
 ```cpp
 T1 = T2.operator+(T3);
