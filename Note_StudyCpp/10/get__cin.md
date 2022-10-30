@@ -17,7 +17,6 @@
 ### cin.get()
 - 可以用于截断\n
 ```cpp
-     cout << "Weight!" << endl;
      cin >> candy[0].weight;
      cin.get();
   ```
