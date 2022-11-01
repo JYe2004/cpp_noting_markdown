@@ -1,3 +1,10 @@
+# Auto_ptr
+```cpp
+#include<memory>
+```
+- new和new[]的内存需要用delete和delete]释放。
+- 程序员的主观失误，忘了或漏了释放。
+- 程序员也不确定何时释放。
 ## 智能指针
 ### 遍历
 ```cpp
@@ -13,6 +20,47 @@ for( auto i : v)
 
 >后期用来再回来补充笔记了
 ### unique_ptr
+```cpp
+#include <iostream>
+#include<memory>
+using namespace std;
+
+class AA{
+
+public:
+    string m_name;
+    AA(){cout << m_name << "Constructor_AA() is called!" << endl;}
+    AA(const string &name):m_name(name){cout << "Constructor_AA() is called(" << m_name << ")\n";}
+    ~AA(){cout << "Destructor is called!(" << m_name <<")" << endl;}
+};
+
+#include "TestAutoPtr.h"
+int main(void)
+{
+///1.   demo中用的是类，用c++本身的数据类型看不出析构效果
+//    AA *p = new AA("Julia");
+//    unique_ptr<AA>output_1(p);
+
+////2.上下等效
+//    unique_ptr<AA>output_1(new AA("Julia"));
+
+///3.    unique_ptr<AA>output_1 = make_unique<AA>("Julia");
+//    make_unique替代了new
+
+//// - 它重构了* 和 -> ;所以普通指针的用法它也具备
+    unique_ptr<AA>output_1(new AA("julia"));
+    cout << "m_name = " << output_1->m_name << endl;
+    cout << "m_name = " << (*output_1).m_name << endl;
+    return 0;
+}
+```
+```cpp
+//最后运行结果：
+    Constructor_AA() is called(julia)
+    m_name = julia
+    m_name = julia
+    Destructor is called!(julia)
+```
 
 ### shared_ptr
 
